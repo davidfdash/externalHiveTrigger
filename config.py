@@ -6,8 +6,9 @@ api_key = 'JzdWJUeXBlIjoidXNlciIsInRlbmFudElkIjoiZTN4YXBWLThyMUJmektmOUVERFFrcUt
 appId = '3bb21df4-d184-48b3-a22b-e33e65301596'
 
 #On Prem Config
-onPrem_url = "https://qseowcentral/"
-cert = ""
+node = "https://qseowcentral"
+cert = 'C:\qscerts\clientandkey.pem'
+user = "UserDirectory=test;UserId=svc_acct"
 taskId = "bf8e0ed9-21c5-47e8-a8a2-18f601e79546"
 
 #Hive values
