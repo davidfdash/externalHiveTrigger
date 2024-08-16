@@ -1,31 +1,55 @@
 import config
-import pandas as pd
 import qseowRefresh
-from sqlalchemy import create_engine
+import jaydebeapi
 from datetime import date
-
-today = (date.today())
-lastRefresh = ""
+import time
 
 
 # Check the Hive database for a True value
 def isitdone():
-    conn = f'hive://{config.user_name}:{config.passwd}@{config.host_server}:{config.port}/{config.database}'
-    engine = create_engine(conn, connect_args={'auth': 'LDAP'})
+    # Replace with your database details
+    driver = "org.apache.hive.jdbc.HiveDriver"
+    jdbc_url = "jdbc:hive2://hnr02n04-i.hpeit.hpecorp.net:8443/;ssl=true;transportMode=http;httpPath=gateway/cdp-proxy-api/hive"
+    credentials = ["srvc_eapqlik_sls_hitg", "*****"]
+    jar_path = "E:/Scripts/externalHiveTrigger-master/JDBC Jar for Hive/hive-jdbc-uber-2.6.5.0-292.jar"
 
-    query = "select case when ar.ts>br.ts then true else false end as status from ea_common.channel_hive_table_info_br br INNER JOIN ea_common.channel_hive_table_info_ar ar on br.tablename=ar.tablename where ar.tablename='chnlptnr_sellin_fact';"
-    data = pd.read_sql(query, con=engine)
-    print(data)
-    global lastRefresh
-    lastRefresh = date.today()
+    # Connect to the database
+    conn = jaydebeapi.connect(driver, jdbc_url, credentials, jar_path)
+
+    # Create a cursor
+    curs = conn.cursor()
+
+    # Execute a query
+    curs.execute(
+        "select case when ar.ts>br.ts then true else false end as status from ea_common.channel_hive_table_info_br br INNER JOIN ea_common.channel_hive_table_info_ar ar on br.tablename=ar.tablename where ar.tablename='chnlptnr_sellin_fact'")
+
+    # Fetch the results
+    results = curs.fetchall()
+
+    # Print the results
+    for row in results:
+        print(row)
+        doneornot = row[0]
+    # Close the cursor and connection
+    curs.close()
+    conn.close()
+    return doneornot
 
 
 # main function
+
+
 def main():
-    global lastRefresh
-    while lastRefresh != today:
-        isitdone()
-    qseowRefresh.refresh_data()
+    lastrefresh = ""
+    runtoday = False
+    while True:
+        while lastrefresh != (date.today()):
+            isitdone()
+            time.sleep(600)
+        if not runtoday:
+            qseowRefresh.refresh_data()
+            runtoday = True
+            lastrefresh = (date.today())
 
 
 main()
