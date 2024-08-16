@@ -28,7 +28,7 @@ def isitdone():
 
     # Print the results
     for row in results:
-        print(row)
+        print(row[0])
         doneornot = row[0]
     # Close the cursor and connection
     curs.close()
@@ -46,10 +46,10 @@ def main():
         while lastrefresh != (date.today()):
             isitdone()
             time.sleep(600)
-        if not runtoday:
+        while lastrefresh != date.today() and (not runtoday):
             qseowRefresh.refresh_data()
             runtoday = True
-            lastrefresh = (date.today())
+        time.sleep(600)
 
 
 main()

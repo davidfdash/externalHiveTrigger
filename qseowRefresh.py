@@ -2,6 +2,7 @@ import config
 import json
 import requests
 import urllib3
+from datetime import date
 
 
 def refresh_data():
@@ -21,6 +22,8 @@ def refresh_data():
     print(headers)
     print(response)
     print(response.text)
+    lastrefresh = (date.today())
+    return lastrefresh
 
 urllib3.disable_warnings()
 refresh_data()
