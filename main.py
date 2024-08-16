@@ -40,16 +40,16 @@ def isitdone():
 
 
 def main():
-    lastrefresh = ""
-    runtoday = False
+    lastrefresh = "2024-08-10"
+    #runtoday = False
     while True:
         while not isitdone():
             print('not done at ' + str(datetime.time()))
             time.sleep(600)
-        while lastrefresh != datetime.date.today() and not runtoday:
-            qseowRefresh.refresh_data()
+        while lastrefresh != datetime.date.today():# and not runtoday:
+            lastrefresh = qseowRefresh.refresh_data()
             print('refresh run at ' + str(datetime.time()))
-            runtoday = True
+            #runtoday = True
         time.sleep(600)
 
 
