@@ -7,7 +7,6 @@
     <list default="true" id="d106dadf-7518-4dd6-883a-114da10f3b81" name="Changes" comment="updated logic and qseowrefresh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qseowRefresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/qseowRefresh.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,7 +1,7 @@
 import config
 import qseowRefresh
 import jaydebeapi
-from datetime import date
+import datetime
 import time
 
 
@@ -43,11 +43,12 @@ def main():
     lastrefresh = ""
     runtoday = False
     while True:
-        while lastrefresh != (date.today()):
-            isitdone()
+        while not isitdone():
+            print('not done at ' + str(datetime.time()))
             time.sleep(600)
-        while lastrefresh != date.today() and (not runtoday):
+        while lastrefresh != datetime.date.today() and not runtoday:
             qseowRefresh.refresh_data()
+            print('refresh run at ' + str(datetime.time()))
             runtoday = True
         time.sleep(600)
 
