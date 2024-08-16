@@ -17,6 +17,6 @@ Presto_Conn.close()
 #    data = pd.read_sql(query, con=engine)
 #    print(data)
 #    return data
-script =f"""select case when ar.ts>br.ts then true else false end as status from ea_common.channel_hive_table_info_br br INNER JOIN ea_common.channel_hive_table_info_ar ar on br.tablename=ar.tablename where ar.tablename='chnlptnr_sellin_fact'; """
+# script =f"""select case when ar.ts>br.ts then true else false end as status from ea_common.channel_hive_table_info_br br INNER JOIN ea_common.channel_hive_table_info_ar ar on br.tablename=ar.tablename where ar.tablename='chnlptnr_sellin_fact'; """
 
-script =f"""select * from table limit 10"""
+# script =f"""select * from table limit 10"""
