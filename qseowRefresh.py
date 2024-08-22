@@ -26,4 +26,4 @@ def refresh_data():
     return lastrefresh
 
 urllib3.disable_warnings()
-refresh_data()
+#refresh_data()

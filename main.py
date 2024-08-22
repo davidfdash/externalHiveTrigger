@@ -44,11 +44,11 @@ def main():
     #runtoday = False
     while True:
         while not isitdone():
-            print('not done at ' + str(datetime.time()))
+            print('not done at ' + str(datetime.datetime.now()))
             time.sleep(600)
         while lastrefresh != datetime.date.today():# and not runtoday:
             lastrefresh = qseowRefresh.refresh_data()
-            print('refresh run at ' + str(datetime.time()))
+            print('refresh run at ' + str(datetime.datetime.now()))
             #runtoday = True
         time.sleep(600)
 
